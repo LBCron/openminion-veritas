@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openminion-veritas"
+version = "0.1.0"
+description = "Autonomous Repository QA, Regression Triage & Patch Verification Agent powered by OpenMinion 0.1 SDK"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "LBCron", email = "ronanchenlopes@gmail.com" }]
+dependencies = [
+  "openminion>=0.1.19",
+  "pydantic>=2.0",
+  "rich>=13.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "ruff>=0.11",
+]
+
+[project.scripts]
+veritas = "openminion_veritas.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
