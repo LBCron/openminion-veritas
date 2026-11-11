@@ -1,15 +1,16 @@
 # What We Learned Building on OpenMinion 0.1 SDK
 
-While building **OpenMinion Veritas** against `openminion` (`0.1.19` / `dev`), we stress-tested the embedded Python SDK across agent execution, custom `@tool` registration, `PolicyCtl` operator approval gates, `subagent` delegation, `DelegatedMemoryReadRequest`, `Handoff`, `MemoryBundle`, and `APIRuntime` diagnostics.
+While building **OpenMinion Veritas** against `openminion` (`0.1.19` -> `0.1.20`), we stress-tested the embedded Python SDK across agent execution, custom `@tool` registration, `PolicyCtl` operator approval gates, `subagent` delegation, `DelegatedMemoryReadRequest`, `Handoff`, `MemoryBundle`, and `APIRuntime` diagnostics.
 
-Below are our **5 concrete technical findings** (including **1 upstream bug report [#703](https://github.com/openminion/openminion/issues/703) + reviewed & approved fix PR [#704](https://github.com/openminion/openminion/pull/704)**, **2 additional reproducible SDK bugs**, and **2 developer-experience friction points**) with exact file/line references and minimal reproducers.
+Below are our **technical findings & merged upstream contributions** (including **upstream bug report [#703](https://github.com/openminion/openminion/issues/703) + 2 MERGED upstream fix PRs [#704](https://github.com/openminion/openminion/pull/704) & [#706](https://github.com/openminion/openminion/pull/706) shipped in `openminion==0.1.20` on PyPI**, **2 additional reproducible SDK bugs**, and **2 developer-experience friction points**) with exact file/line references and minimal reproducers.
 
 ---
 
-## Finding #1 (Bug Report [#703](https://github.com/openminion/openminion/issues/703) & Approved Fix PR [#704](https://github.com/openminion/openminion/pull/704)): `subagent(parent, tools=[...])` crashes with `TypeError` when passed `@tool`-decorated functions
+## Finding #1 (Bug Report [#703](https://github.com/openminion/openminion/issues/703) & MERGED Fix PRs [#704](https://github.com/openminion/openminion/pull/704) + [#706](https://github.com/openminion/openminion/pull/706)): `subagent(parent, tools=[...])` `@tool` allowlist crash & `BrainRunner` memory-write guard
 
 - **Upstream Issue**: [`openminion/openminion#703`](https://github.com/openminion/openminion/issues/703)
-- **Upstream Fix PR**: [`openminion/openminion#704`](https://github.com/openminion/openminion/pull/704) (Reviewed & Approved by `@wireindevice`)
+- **Upstream Fix PR #1**: [`openminion/openminion#704`](https://github.com/openminion/openminion/pull/704) (Reviewed, Approved & **MERGED** by `@wireindevice`, shipped in `openminion==0.1.20`)
+- **Upstream Fix PR #2**: [`openminion/openminion#706`](https://github.com/openminion/openminion/pull/706) (`fix(brain): read _memory_write_allowed_for_turn directly (Refs #647)`, **MERGED** & shipped in `openminion==0.1.20`)
 - **Affected File**: `src/openminion/api/handoff.py:244-314` (`subagent`) and `src/openminion/api/handoff.py:92-104` (`SubagentRunContext.as_inbound_metadata`)
 
 ### Root Cause

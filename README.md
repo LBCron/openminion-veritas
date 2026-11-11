@@ -5,9 +5,10 @@
 Built for **Cortensor Hackathon #5 (`OpenMinion 0.1 Python SDK`)**.
 
 - **Building Blocks Matrix & Analysis**: [`BUILDING_BLOCKS_TESTED.md`](BUILDING_BLOCKS_TESTED.md)
-- **SDK Bug Reports, Upstream Fix PR & Product Feedback**: [`WHAT_WE_LEARNED.md`](WHAT_WE_LEARNED.md)
+- **SDK Bug Reports, Upstream Fix PRs & Product Feedback**: [`WHAT_WE_LEARNED.md`](WHAT_WE_LEARNED.md)
 - **Upstream Bug Report**: [`openminion/openminion#703`](https://github.com/openminion/openminion/issues/703) — *`subagent(parent, tools=[...])` crashes with `TypeError` when passed `@tool`-decorated functions*
-- **Upstream Fix PR**: [`openminion/openminion#704`](https://github.com/openminion/openminion/pull/704) — *Fix `subagent` `tool_allowlist` resolution for `@tool` callables* (Reviewed & Approved by `@wireindevice`)
+- **Upstream Fix PR #1 (MERGED & Shipped in `openminion==0.1.20`)**: [`openminion/openminion#704`](https://github.com/openminion/openminion/pull/704) — *Fix `subagent` `tool_allowlist` resolution for `@tool` callables* (Reviewed, Approved & Merged by `@wireindevice`)
+- **Upstream Fix PR #2 (MERGED & Shipped in `openminion==0.1.20`)**: [`openminion/openminion#706`](https://github.com/openminion/openminion/pull/706) — *`fix(brain): read _memory_write_allowed_for_turn directly (Refs #647)`* (Merged into `openminion`)
 
 ---
 
@@ -50,7 +51,7 @@ flowchart TD
 
 ### Prerequisites
 - Python `>=3.11`
-- `openminion` (`>=0.1.19` or `dev` branch with PR `#704`)
+- `openminion>=0.1.20` (includes merged upstream PRs `#704` & `#706`)
 
 ### Installation
 ```bash
